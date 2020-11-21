@@ -1,0 +1,9 @@
+﻿@model IEnumerable<KGUWiki.Models.Department>
+@if (Model.Count() == 0)
+{
+    <option value="" selected disabled hidden>Выберите факультет</option>
+}
+@foreach (var item in Model)
+{
+    <option value="@item.Id">@item.FullName</option>
+}

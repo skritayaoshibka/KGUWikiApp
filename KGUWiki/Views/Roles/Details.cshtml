@@ -1,0 +1,18 @@
+@model KGUWiki.Models.Role
+@{
+    ViewBag.Title = "Подробная информация о пользовательской роли";
+}
+
+<a class="btn btn-outline-secondary m-2" asp-action="Index" asp-controller="Roles">🡸Вернуться к таблице</a>
+<div class="mx-auto w-75 m-3 text-center">
+    <h2 class="text-center mb-3">Подробная информация о пользовательской роли</h2>
+    <hr />
+    <p class="m-1 detail">
+        <b>@Html.DisplayNameFor(model => model.Id):</b> @Html.DisplayFor(model => model.Id)
+    </p>
+    <p class="m-1 detail">
+        <b>@Html.DisplayNameFor(model => model.Name):</b> @Html.DisplayFor(model => model.Name)
+    </p>
+
+    <a class="btn btn-warning m-1" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
+</div>

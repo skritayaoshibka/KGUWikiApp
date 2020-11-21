@@ -1,0 +1,39 @@
+﻿@model KGUWiki.Models.Faculty
+@{
+    ViewBag.Title = "Создание записи в таблице факультетов";
+}
+
+<a class="btn btn-outline-secondary m-2" asp-action="Index" asp-controller="Faculties">🡸Вернуться к таблице</a>
+<div class="mx-auto w-50 m-3">
+    <h2 class="text-center mb-2">Добавление факультета</h2>
+    <hr />
+    <form asp-action="Create" asp-antiforgery="true">
+        <div asp-validation-summary="ModelOnly" class="text-danger validation"></div>
+
+        <span asp-validation-for="FullName" class="text-danger"></span>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">@Html.DisplayNameFor(model => model.FullName)</span>
+            </div>
+            <input asp-for="FullName" class="form-control" />
+        </div>
+
+        <span asp-validation-for="ShortName" class="text-danger"></span>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">@Html.DisplayNameFor(model => model.ShortName)</span>
+            </div>
+            <input asp-for="ShortName" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Добавить" class="btn btn-success float-right" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

@@ -1,0 +1,21 @@
+﻿@model KGUWiki.Models.Faculty
+@{
+    ViewBag.Title = "Подробная информация о факультете";
+}
+
+<a class="btn btn-outline-secondary m-2" asp-action="Index" asp-controller="Faculties">🡸Вернуться к таблице</a>
+<div class="mx-auto w-75 m-3 text-center">
+    <h2 class="text-center mb-3">Подробная информация о факультете</h2>
+    <hr />
+    <p class="m-1 detail">
+        <b>@Html.DisplayNameFor(model => model.Id):</b> @Html.DisplayFor(model => model.Id)
+    </p>
+    <p class="m-1 detail">
+        <b>@Html.DisplayNameFor(model => model.FullName):</b> @Html.DisplayFor(model => model.FullName)
+    </p>
+    <p class="m-1 detail">
+        <b>@Html.DisplayNameFor(model => model.ShortName):</b> @Html.DisplayFor(model => model.ShortName)
+    </p>
+
+    <a class="btn btn-warning m-1" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
+</div>

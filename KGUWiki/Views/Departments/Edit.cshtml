@@ -1,0 +1,47 @@
+﻿@model KGUWiki.Models.Department
+@{
+    ViewData["Title"] = "Редактирование записи в таблице \"Кафедры\"";
+}
+
+<a class="btn btn-outline-secondary m-2" asp-action="Index" asp-controller="Departments">🡸Вернуться к таблице</a>
+<div class="mx-auto w-50 m-3">
+    <h2 class="text-center mb-3">Редактирование информации о кафедре</h2>
+    <hr />
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <span asp-validation-for="FullName" class="text-danger"></span>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">@Html.DisplayNameFor(model => model.FullName)</span>
+            </div>
+            <input asp-for="FullName" class="form-control" value="@Model.FullName" />
+        </div>
+
+        <span asp-validation-for="ShortName" class="text-danger"></span>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">@Html.DisplayNameFor(model => model.ShortName)</span>
+            </div>
+            <input asp-for="ShortName" class="form-control" value="@Model.ShortName" />
+        </div>
+
+        <span asp-validation-for="Faculty.ShortName" class="text-danger"></span>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">@Html.DisplayNameFor(model => model.Faculty.ShortName)</span>
+            </div>
+            @Html.DropDownListFor(Model => Model.FacultyId, ViewBag.Faculties as SelectList, new { @class = "dropdown" })
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Изменить" class="btn btn-success float-right" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

@@ -1,0 +1,109 @@
+﻿@model KGUWiki.Models.UniversityEmployee
+
+@{
+    ViewData["Title"] = "Создание записи в таблице \"Сотрудники\"";
+}
+
+<a class="btn btn-outline-secondary m-2" asp-action="Index" asp-controller="UniversityEmployees">🡸Вернуться к таблице</a>
+<div class="mx-auto w-50 m-3">
+    <h2 class="text-center mb-2">Добавление сотрудника</h2>
+    <hr />
+    <form asp-action="Create" enctype="multipart/form-data" asp-antiforgery="true">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <span asp-validation-for="FullName" class="text-danger"></span>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">@Html.DisplayNameFor(model => model.FullName)</span>
+            </div>
+            <input asp-for="FullName" class="form-control" />
+        </div>
+
+        <span asp-validation-for="Position" class="text-danger"></span>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">@Html.DisplayNameFor(model => model.Position)</span>
+            </div>
+            <input asp-for="Position" class="form-control" />
+        </div>
+
+        <span asp-validation-for="Photo" class="text-danger"></span>
+
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">@Html.DisplayNameFor(model => model.Photo)</span>
+            </div>
+            <input name="Photo" type="file" class="form-control" />
+        </div>
+
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">@Html.DisplayNameFor(model => model.Email)</span>
+            </div>
+            <input asp-for="Email" class="form-control" />
+        </div>
+
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">@Html.DisplayNameFor(model => model.PhoneNumber)</span>
+            </div>
+            <input asp-for="PhoneNumber" class="form-control" />
+        </div>
+
+        <span asp-validation-for="Description" class="text-danger"></span>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">@Html.DisplayNameFor(model => model.Description)</span>
+            </div>
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">@Html.DisplayNameFor(model => model.Department.Faculty.FullName)</span>
+            </div>
+            @Html.DropDownList("Faculty", ViewBag.Faculties as SelectList, "Выберите факультет", new { id = "faculty" })
+        </div>
+
+        <span asp-validation-for="Department" class="text-danger"></span>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">@Html.DisplayNameFor(model => model.Department.FullName)</span>
+            </div>
+            <select name="DepartmentId" id="department" disabled>
+                <option value="" selected hidden>Выберите факультет</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Добавить" class="btn btn-success float-right" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script>
+            $(function ()
+            {
+                $('#faculty').change(function()
+                {
+                    var id = $(this).val()
+                    $.ajax(
+                        {
+                        type: 'GET',
+                        url: '@Url.Action("GetDepartmentsFromFaculty")?facultyId=' + id,
+                        success: function (data)
+                        {
+                            $('#department').prop("disabled", false)
+                            $('#department').empty()
+                            $('#department').append(data)
+                        }
+                    });
+                });
+            })
+    </script>
+}

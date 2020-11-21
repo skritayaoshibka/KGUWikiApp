@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Faculty>
+@{
+    ViewBag.Title = "Таблица \"Факультеты\"";
+}
+
+<a class="btn btn-outline-secondary m-2" asp-action="Index" asp-controller="Admin">🡸Вернуться к странице администратора</a>
+<div>
+    <a class="btn btn-dark mb-1 float-right" asp-action="Create">Добавить запись</a>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" class="text-center">
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th scope="col" class="text-center">
+                    @Html.DisplayNameFor(model => model.FullName)
+                </th>
+                <th scope="col" class="text-center">
+                    @Html.DisplayNameFor(model => model.ShortName)
+                </th>
+                <th class="text-center">Подробнее/Изменить/Удалить</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="col" class="text-center">
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </th>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.ShortName)
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn-outline-secondary btn-sm" asp-action="Details" asp-route-id="@item.Id">Подробнее</a>
+                        <a class="btn btn-outline-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                        <a class="btn btn-outline-secondary btn-sm" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

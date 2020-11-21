@@ -1,0 +1,26 @@
+@model KGUWiki.Models.User
+@{
+    ViewBag.Title = "Подробная информация о записи из таблицы \"Пользователи\"";
+}
+
+<a class="btn btn-outline-secondary m-2" asp-action="Index" asp-controller="Users">🡸Вернуться к таблице</a>
+<div class="mx-auto w-75 m-3 text-center">
+    <h2 class="text-center mb-3">Подробная информация о пользователе</h2>
+    <hr />
+    <p class="m-1 detail">
+        <b>@Html.DisplayNameFor(model => model.Id):</b> @Html.DisplayFor(model => model.Id)
+    </p>
+    <p class="m-1 detail">
+        <b>@Html.DisplayNameFor(model => model.Name):</b> @Html.DisplayFor(model => model.Name)
+    </p>
+    <p class="m-1 detail">
+        <b>@Html.DisplayNameFor(model => model.Email):</b> @Html.DisplayFor(model => model.Email)
+    </p>
+    <p class="m-1 detail">
+        <b>@Html.DisplayNameFor(model => model.Password):</b> @Html.DisplayFor(model => model.Password)
+    </p>
+    <p class="m-1 detail">
+        <b>@Html.DisplayNameFor(model => model.Role.Name):</b> @Html.DisplayFor(model => model.Role.Name)
+    </p>
+    <a class="btn btn-warning m-1" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
+</div>

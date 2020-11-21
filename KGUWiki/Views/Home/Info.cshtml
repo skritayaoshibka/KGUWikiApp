@@ -1,0 +1,15 @@
+@model KGUWiki.Models.UniversityEmployee
+@{
+    ViewData["Title"] = "Информация о сотруднике";
+}
+
+<div class="m-3">
+    <img style='width:300px; height:auto; float:left;' class="mr-3" src="data:image/jpeg;base64, @(Convert.ToBase64String(Model.Photo))">
+    <h3><b>@Model.FullName</b></h3>
+    <p><b>@Html.DisplayNameFor(model => Model.Position) :</b> @Model.Position</p>
+    <p><b>@Html.DisplayNameFor(model => Model.Email) :</b> @Model.Email</p>
+    <p><b>@Html.DisplayNameFor(model => Model.PhoneNumber) :</b> @Model.PhoneNumber</p>
+    <p><b>@Html.DisplayNameFor(model => Model.Description) :</b> @Model.Description</p>
+    <p><b>@Html.DisplayNameFor(model => Model.Department.FullName) :</b> @Model.Department.FullName</p>
+    <p><b>@Html.DisplayNameFor(model => Model.Department.Faculty.FullName) :</b> @Model.Department.Faculty.FullName</p>
+</div>

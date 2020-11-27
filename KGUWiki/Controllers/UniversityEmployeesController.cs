@@ -25,11 +25,6 @@ namespace KGUWiki.Controllers
             _appEnvironment = appEnvironment;
         }
 
-        //public UniversityEmployeesController(ApplicationDbContext context)
-        //{
-        //    _context = context;
-        //}
-
         [HttpGet]
         public async Task<IActionResult> Index()
         {

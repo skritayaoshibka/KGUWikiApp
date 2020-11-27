@@ -22,7 +22,7 @@ namespace Unit.Tests
             {
                 var controller = new HomeController(dbContext);
 
-                var result = controller.Index("");
+                var result = controller.Index("", null, null);
 
                 var viewResult = Assert.IsType<ViewResult>(result);
                 Assert.NotNull(viewResult);
@@ -40,7 +40,7 @@ namespace Unit.Tests
             {
                 var controller = new HomeController(dbContext);
 
-                var result = controller.Index("");
+                var result = controller.Index("", null, null);
                 
                 var viewResult = Assert.IsType<ViewResult>(result);
                 var model = Assert.IsAssignableFrom<List<UniversityEmployee>>(viewResult.Model);
@@ -66,5 +66,6 @@ namespace Unit.Tests
             }
         }
 
+        public void 
     }
 }

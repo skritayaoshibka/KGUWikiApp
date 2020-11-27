@@ -2,36 +2,47 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-<div class="container r">
-    <form method="GET">
-        <div class="input-group mb-2">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Отфильтровать по ФИО</span>
-            </div>
-            <input name="fullname" class="form-control" />
-            <input type="submit" value="Отфильтровать" class="btn btn-outline-secondary ml-1">
+
+
+<form method="GET" asp-action="Index" class="border border-dark p-2">
+    <h5>Фильтрация</h5>
+    <div class="input-group mb-2">
+        <div class="input-group-prepend">
+            <span class="input-group-text">ФИО</span>
         </div>
-
-    </form>
-
-    <div class="row">
-        @foreach (var employee in Model)
-        {
-            <div class="card m-1 p-1 mx-auto" style="width: 15rem;">
-                <img class="card-img-top mx-auto d-block" style="width: 14rem; height: 14rem; object-fit:cover" src="data:image/jpeg;base64, @(Convert.ToBase64String(employee.Photo))">
-                <div class="card-body">
-                    <h5 class="card-title">@employee.FullName</h5>
-                    <p class="card-text">@employee.Position</p>
-                    <a asp-controller="Home" asp-action="Info" asp-route-id=@employee.Id class="btn btn-secondary">Подробнее</a>
-                </div>
-            </div>
-        }
+        <input name="fullname" class="form-control" />
     </div>
-
-    @if (Model.Count == 0)
+    <div class="input-group mb-2">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Факультет</span>
+        </div>
+        @Html.DropDownList("facultyId", ViewBag.Faculties as SelectList, "При необходимости выберите факультет", new { id = "faculty", @class = "form-control" })
+    </div>
+    <div class="input-group mb-2">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Кафедра</span>
+        </div>
+        @Html.DropDownList("departmentId", ViewBag.Departments as SelectList, "При необходимости выберите кафедру", new { id = "department", @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-secondary">Отфильтровать</button>
+</form>
+<div class="row">
+    @foreach (var employee in Model)
     {
-        <div class="text-center">
-            <p>Сотрудники не найдены</p>
+        <div class="card m-1 p-1 mx-auto" style="width: 15rem;">
+            <img class="card-img-top mx-auto d-block" style="width: 14rem; height: 14rem; object-fit:cover" src="data:image/jpeg;base64, @(Convert.ToBase64String(employee.Photo))">
+            <div class="card-body">
+                <h5 class="card-title">@employee.FullName</h5>
+                <p class="card-text">@employee.Position</p>
+                <a asp-controller="Home" asp-action="Info" asp-route-id=@employee.Id class="btn btn-secondary">Подробнее</a>
+            </div>
         </div>
     }
 </div>
+
+@if (Model.Count == 0)
+{
+    <div class="text-center">
+        <p>Сотрудники не найдены</p>
+    </div>
+}
